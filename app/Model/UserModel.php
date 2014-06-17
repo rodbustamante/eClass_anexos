@@ -1,7 +1,10 @@
 <?php
 
-	class UserModel extends Model {
+class UserModel extends Model {
+
+	public function index() {
 
 	}
+}
 
 ?>
