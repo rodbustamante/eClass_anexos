@@ -4,23 +4,60 @@ class UsersController extends AppController {
 	public $helpers = array('Html','Form');
 	public $component = array('Session');
 
-    public function index() {
+	public function index() {
 
-    	if (!empty($this->request->data['User'])) {
-    		$conditions = array();
-    		foreach ($this->request->data['User'] as $key => $value) :
-    			if (!empty($value)) :
-    				$conditions[] = array('LCASE(User.'.$key.') LIKE ' => '%'.strtolower($value).'%');
-    			endif;
-    		endforeach;
-    	} else {
-    		$conditions = null;
-    	}
+		$this->loadModel('Office');
 
-    	$this->set('users', $this->User->find('all', array(
-    													'conditions' => $conditions)
-    	));
-    	$this->User->find('all');
+		if (!empty($this->request->data['User'])) {
+			$conditions = array();
+			foreach ($this->request->data['User'] as $key => $value) :
+				if (!empty($value)) :
+					if ($key == 'full_name') {
+						$conditions[] = array('LCASE(CONCAT(User.name," ", User.last_name)) LIKE ' => '%'.strtolower($value).'%');
+					} else {
+						$conditions[] = array('LCASE(User.'.$key.') LIKE ' => '%'.strtolower($value).'%');
+					}
+				endif;
+			endforeach;
+		} else {
+			$conditions = null;
+		}
+
+		$offices = array();
+		$data_offices = $this->Office->find('all');
+		foreach ($data_offices as $office) :
+			$offices[$office['Office']['id']] = $office['Office']['name'];
+		endforeach;
+
+		$this->set('offices', $offices);
+
+		$this->set('users', $this->User->find('all', array(
+														'conditions' => $conditions)
+		));
+	}
+
+	function auto_complete() {
+		$this->autoRender = false;
+        $users = $this->User->find('all', array(
+            'conditions' => array(
+                'LCASE(CONCAT(User.name," ", User.last_name)) LIKE' => '%'.strtolower($this->params['url']['autoCompleteText']).'%'
+            ),
+            'fields' => ['*'],
+            'limit' => 3,
+            'recursive'=>-1,
+        ));
+        // $users = Set::Extract($users,'{n}.User.name');
+        // $last_name = Set::Extract($users,'{n}.User.last_name');
+
+        $data = [];
+        foreach ($users as $key => $value) :
+        		$data[$key] = $value['User']['name'] . ' ' . $value['User']['last_name'];
+        endforeach;
+
+        // $usdata
+        echo $users = json_encode($data);
+        //$this->set('users', $users);
+        //$this->layout = 'ajax';
     }
 }
 
