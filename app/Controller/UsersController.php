@@ -20,6 +20,7 @@ class UsersController extends AppController {
     	$this->set('users', $this->User->find('all', array(
     													'conditions' => $conditions)
     	));
+    	$this->User->find('all');
     }
 }
 
