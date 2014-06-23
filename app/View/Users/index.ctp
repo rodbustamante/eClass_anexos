@@ -11,6 +11,7 @@
 	<table>
 		<thead>
 			<tr>
+				
 				<td>Nombre</td>
 				<td>Apellido</td>
 				<td>N° Anexo</td>
@@ -30,3 +31,4 @@
 		</tbody>
 	</table>
 </div>
+
