@@ -1,0 +1,13 @@
+html{font-family: 'Verdana'}
+body{background-color: #D5D5D5;}
+.navbar > .container {padding: 10px 10px;}
+.container > .row > .flash-msj {margin-top: 50px;}
+.container > .row > .primary-container {padding: 25px 25px;background: #FFFFFF;border-radius: 0px 0px 6px 6px;}
+.row > div > .form-container {padding: 20px 25px;}
+.autoCompleteDiv {position: absolute;border: 1px solid #888;margin: 0px;display: none;background: #FFF;border-radius: 2px;}
+.autoCompleteDiv a:hover {background: none;background-color: #D5D5D5;font-weight: bold;}
+.autoCompleteDiv a {background: none;background-color: white;color: #000000;text-decoration: none;padding: 5px;margin: 0px;text-transform: capitalize;display: block;}
+.form-container > form > .btn{margin-top: 20px;}
+.row > div > .bg-success {padding: 15px;border-radius: 4px;}
+.table-responsive > table {border: 2px solid #DDD;border-radius: 4px;}
+.table-responsive > table > thead {background: #D5D5D5;border-radius-top:4px;}

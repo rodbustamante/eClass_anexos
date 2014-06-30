@@ -1,34 +1,74 @@
+<?php if (isset($msj) && !is_null($msj)) : ?>
+	<div class="row">
+		<div class="col-xs-12">
+			<p class="bg-success">
+				<?=$msj;?>
+			</p>
+		</div>
+	</div>
+<?php endif; ?>
+
 <h1>Buscar Usuario</h1>
+<style>
 
-<?=$this->Form->create('User'); ?>
-<?=$this->Form->input('name', array('label' => 'Nombre')); ?>
-<?=$this->Form->input('last_name', array('label' => 'Apellido')); ?>
-<?=$this->Form->end('Buscar'); ?>
-<br>
-<h1>Listado de Usuarios</h1>
+</style>
+<div class="row">
+	<div class="col-xs-4">
+		<div class="form-container">
+			<?=$this->Form->create('User'); ?>
+			<?=$this->AutoComplete->input(
+				'full_name',
+				array(
+					'label' => 'Nombre: ',
+					'autocomplete'=>'off',
+					'class'=>'form-control input-search',
+					'placeholder'=>'Ingresa Nombre o Apellido',
+					'autoCompleteUrl'=>$this->Html->url(
+						array(
+							'controller'=>'Users',
+							'action'=>'auto_complete',
+						)
+					),
+					'autoCompleteRequestItem'=>'autoCompleteText',
+				)
+			);  ?>
 
-<div class="users-list">
-	<table>
-		<thead>
-			<tr>
-				
-				<td>Nombre</td>
-				<td>Apellido</td>
-				<td>N° Anexo</td>
-				<td>Acciones</td>
-			</tr>
-		</thead>
-		<tbody>
-			<?php foreach ($users as $user) : ?>
-				<tr>
-					<td><?=$user['User']['name']; ?></td>
-					<td><?=$user['User']['last_name']; ?></td>
-					<td><?=$user['Number']['number']; ?></td>
-					<td></td>
-				</tr>
-			<?php endforeach; ?>
+			<?php //echo $this->Form->input('office_id', array('label' => 'Oficina: ', 'options' => $offices, 'class' => 'hide','empty' => 'Seleccione una Oficina')); ?>
+			<?=$this->Form->button('Buscar', array('type' => 'submit', 'id'=>'btn-submit', 'class'=>'btn btn-primary')); ?>
+		</div>
+	</div>
+</div>
 
-		</tbody>
-	</table>
+<div class="row">
+	<dic class="col-xs-6">
+		<h3>Listado de Usuarios</h3>
+		<div class="table-responsive">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+
+						<th>Nombre</th>
+						<th>Apellido</th>
+						<th>Oficina</th>
+						<th>N° Anexo</th>
+						<th>Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach ($users as $user) : ?>
+						<tr>
+							<td><?=$user['User']['name']; ?></td>
+							<td><?=$user['User']['last_name']; ?></td>
+							<td><?=$user['Office']['name']; ?></td>
+							<td><?=$user['Number']['number']; ?></td>
+							<td></td>
+						</tr>
+					<?php endforeach; ?>
+
+				</tbody>
+			</table>
+		</div>
+
+	</dic>
 </div>
 

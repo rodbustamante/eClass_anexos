@@ -16,48 +16,61 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
-$cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<?php echo $this->Html->charset(); ?>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>
-		<?php echo $cakeDescription ?>:
-		<?php echo $title_for_layout; ?>
+
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
 
-		echo $this->Html->css('cake.generic');
+		echo $this->Html->css('bootstrap.css');
+		echo $this->Html->css('style.css');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
+		echo $this->Html->script('jquery-2.1.1.min.js');
+		echo $this->Html->script('bootstrap.js');
 	?>
 </head>
 <body>
-	<div id="container">
-		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-2">
+					<?=$this->Html->image('eclass-navbar.png', array(
+    					'alt' => 'Brownies',
+    					'fullBase' => true,
+    					'url' => array('controller' => 'users', 'action' => 'index')
+						));
+						?>
+				</div>
+				<div class="col-xs-4"></div>
+				<div class="col-xs-6"></div>
+			</div>
 		</div>
-		<div id="content">
+	</div>
 
-			<?php echo $this->Session->flash(); ?>
 
-			<?php echo $this->fetch('content'); ?>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 flash-msj">
+				<?php echo $this->Session->flash(); ?>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12 primary-container">
+				<?php echo $this->fetch('content'); ?>
+			</div>
 		</div>
 		<div id="footer">
-			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-					'http://www.cakephp.org/',
-					array('target' => '_blank', 'escape' => false, 'id' => 'cake-powered')
-				);
-			?>
-			<p>
-				<?php echo $cakeVersion; ?>
-			</p>
+
 		</div>
 	</div>
 	<?php echo $this->element('sql_dump'); ?>
