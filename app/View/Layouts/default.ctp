@@ -40,16 +40,32 @@
 </head>
 <body>
 	<div class="navbar navbar-inverse navbar-fixed-top">
-		<h1>Sistema de anexos</h1>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-2">
+					<?=$this->Html->image('eclass-navbar.png', array(
+    					'alt' => 'Brownies',
+    					'fullBase' => true,
+    					'url' => array('controller' => 'users', 'action' => 'index')
+						));
+						?>
+				</div>
+				<div class="col-xs-4"></div>
+				<div class="col-xs-6"></div>
+			</div>
+		</div>
 	</div>
 
-	<div class="flash-msj">
-		<?php echo $this->Session->flash(); ?>
-	</div>
 
 	<div class="container">
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-xs-12 flash-msj">
+				<?php echo $this->Session->flash(); ?>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12 primary-container">
 				<?php echo $this->fetch('content'); ?>
 			</div>
 		</div>

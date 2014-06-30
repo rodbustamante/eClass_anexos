@@ -10,7 +10,7 @@ $(document).ready(function(){
 		$(this).bind('keyup', function(event){
 			// On escape key, hide the suggestions
 			if(event.keyCode==27) {
-				$(updateDiv).hide();
+				$(updateDiv).fadeOut();
 			}else if($(this).val().length>0) {
 				// If a request is in process, return
 				if ( $(this).data('autoCompleteBusy') ) {
@@ -30,17 +30,17 @@ $(document).ready(function(){
 						  if(itemList !== null) {
 							populateAutoComplete(itemList,updateDiv);
 						  } else {
-							$(updateDiv).hide();
+							$(updateDiv).fadeOut();
 						  }
 						}
 					);
 					// Remove busy flag
 					$(this).data('autoCompleteBusy',false);
 				}else{
-					$(updateDiv).show();
+					$(updateDiv).fadeIn();
 				}
 			}else{
-				$(updateDiv).hide();
+				$(updateDiv).fadeOut();
 			}
 		});
 	});
@@ -55,14 +55,16 @@ $(document).ready(function(){
 		// Show them or hide div if nothing to show
 		if(options!=''){
 			$(updateDiv).html(options);
-			$(updateDiv).show();
+			$(updateDiv).fadeIn();
 		} else {
-			$(updateDiv).hide();
+			$(updateDiv).fadeOut();
 		}
 		// Attach a function to click to transfer value to the text box
 		$('a[autoCompleteItem='+tag+']').click(function(){
 			$('input[update='+tag+']').val( $(this).attr('href'));
 			$('input[update='+tag+']').focus();
+			$('.autoCompleteDiv').fadeOut();
+			$('#btn-submit').trigger('click');
 			return false;
 		});
 	}

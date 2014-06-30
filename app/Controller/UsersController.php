@@ -7,6 +7,7 @@ class UsersController extends AppController {
 	public function index() {
 
 		$this->loadModel('Office');
+		$input=null;
 
 		if (!empty($this->request->data['User'])) {
 			$conditions = array();
@@ -14,6 +15,7 @@ class UsersController extends AppController {
 				if (!empty($value)) :
 					if ($key == 'full_name') {
 						$conditions[] = array('LCASE(CONCAT(User.name," ", User.last_name)) LIKE ' => '%'.strtolower($value).'%');
+						$this->set('msj','Búsqueda de usuarios con nombre o apellido "' . $value . '".');
 					} else {
 						$conditions[] = array('LCASE(User.'.$key.') LIKE ' => '%'.strtolower($value).'%');
 					}
@@ -34,6 +36,7 @@ class UsersController extends AppController {
 		$this->set('users', $this->User->find('all', array(
 														'conditions' => $conditions)
 		));
+
 	}
 
 	function auto_complete() {
