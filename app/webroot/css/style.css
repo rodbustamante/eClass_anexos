@@ -8,6 +8,6 @@ body{background-color: #D5D5D5;}
 .autoCompleteDiv a:hover {background: none;background-color: #D5D5D5;font-weight: bold;}
 .autoCompleteDiv a {background: none;background-color: white;color: #000000;text-decoration: none;padding: 5px;margin: 0px;text-transform: capitalize;display: block;}
 .form-container > form > .btn{margin-top: 20px;}
-.row > div > .bg-success {padding: 15px;border-radius: 4px;}
+.flash-msj > .message {padding: 15px;border-radius: 4px;}
 .table-responsive > table {border: 2px solid #DDD;border-radius: 4px;}
 .table-responsive > table > thead {background: #D5D5D5;border-radius-top:4px;}

@@ -59,8 +59,8 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-12 flash-msj">
-				<?php echo $this->Session->flash(); ?>
+			<div class="col-xs-12 flash-msj bg-success">
+				<?php echo $this->Session->flash('good'); ?>
 			</div>
 		</div>
 

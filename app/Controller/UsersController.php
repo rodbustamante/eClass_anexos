@@ -15,7 +15,7 @@ class UsersController extends AppController {
 				if (!empty($value)) :
 					if ($key == 'full_name') {
 						$conditions[] = array('LCASE(CONCAT(User.name," ", User.last_name)) LIKE ' => '%'.strtolower($value).'%');
-						$this->set('msj','Búsqueda de usuarios con nombre o apellido "' . $value . '".');
+						$this->Session->setFlash('Búsqueda de usuarios con nombre o apellido "' . $value . '".', 'default', array(), 'good');
 					} else {
 						$conditions[] = array('LCASE(User.'.$key.') LIKE ' => '%'.strtolower($value).'%');
 					}
