@@ -1,12 +1,3 @@
-<?php if (isset($msj) && !is_null($msj)) : ?>
-	<div class="row">
-		<div class="col-xs-12">
-			<p class="bg-success">
-				<?=$msj;?>
-			</p>
-		</div>
-	</div>
-<?php endif; ?>
 
 <h1>Buscar Usuario</h1>
 <style>
@@ -40,7 +31,7 @@
 </div>
 
 <div class="row">
-	<dic class="col-xs-6">
+	<dic class="col-xs-8">
 		<h3>Listado de Usuarios</h3>
 		<div class="table-responsive">
 			<table class="table table-hover">
