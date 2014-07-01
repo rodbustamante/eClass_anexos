@@ -46,7 +46,8 @@
 					</tr>
 				</thead>
 				<tbody>
-					<?php foreach ($users as $user) : ?>
+
+					<?php foreach ($users['data'] as $user) : ?>
 						<tr>
 							<td><?=$user['User']['name']; ?></td>
 							<td><?=$user['User']['last_name']; ?></td>
@@ -59,7 +60,12 @@
 				</tbody>
 			</table>
 		</div>
-
 	</dic>
+</div>
+
+<div class="row">
+	<div class="col-xs-8 pages">
+		<?=$this->Paginator->numbers(array('first' => 2, 'last' => 2));?>
+	</div>
 </div>
 

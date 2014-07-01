@@ -33,9 +33,17 @@ class UsersController extends AppController {
 
 		$this->set('offices', $offices);
 
-		$this->set('users', $this->User->find('all', array(
+		/*$this->set('users', $this->User->find('all', array(
 														'conditions' => $conditions)
-		));
+		));*/
+
+		 $this->paginate = array(
+	        'conditions' => $conditions,
+	        'limit' => 10
+	    );
+
+	    $data = $this->paginate('User');
+	    $this->set('users',compact('data'));
 
 	}
 
