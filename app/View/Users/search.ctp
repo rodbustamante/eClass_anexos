@@ -29,6 +29,11 @@
 
 			<?php //echo $this->Form->input('office_id', array('label' => 'Oficina: ', 'options' => $offices, 'class' => 'hide','empty' => 'Seleccione una Oficina')); ?>
 			<?=$this->Form->button('Buscar', array('type' => 'submit', 'id'=>'btn-submit', 'class'=>'btn btn-primary')); ?>
+			<?=$this->Html->link('Limpiar',
+    			array('controller' => 'users', 'action' => 'index'),
+    			array('class' => 'btn btn-warning')
+				);
+			?>
 		</div>
 	</div>
 </div>
