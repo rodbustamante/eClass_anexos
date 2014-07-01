@@ -7,7 +7,33 @@ class UsersController extends AppController {
 	public function index() {
 
 		$this->loadModel('Office');
-		$input=null;
+		$this->Session->delete('conditions');
+
+
+		$offices = array();
+		$data_offices = $this->Office->find('all');
+		foreach ($data_offices as $office) :
+			$offices[$office['Office']['id']] = $office['Office']['name'];
+		endforeach;
+
+		$this->set('offices', $offices);
+
+		/*$this->set('users', $this->User->find('all', array(
+														'conditions' => $conditions)
+		));*/
+
+		 $this->paginate = array(
+	        'limit' => 10
+	    );
+
+	    $data = $this->paginate('User');
+	    $this->set('users',compact('data'));
+
+	}
+
+	function search() {
+
+		$this->loadModel('Office');
 
 		if (!empty($this->request->data['User'])) {
 			$conditions = array();
@@ -21,9 +47,12 @@ class UsersController extends AppController {
 					}
 				endif;
 			endforeach;
+
+			$this->Session->write('conditions',$conditions);
 		} else {
 			$conditions = null;
 		}
+
 
 		$offices = array();
 		$data_offices = $this->Office->find('all');
@@ -33,10 +62,17 @@ class UsersController extends AppController {
 
 		$this->set('offices', $offices);
 
-		$this->set('users', $this->User->find('all', array(
+		/*$this->set('users', $this->User->find('all', array(
 														'conditions' => $conditions)
-		));
+		));*/
 
+		 $this->paginate = array(
+	        'conditions' => $this->Session->read('conditions'),
+	        'limit' => 10
+	    );
+
+	    $data = $this->paginate('User');
+	    $this->set('users',compact('data'));
 	}
 
 	function auto_complete() {

@@ -8,6 +8,12 @@
 			        'foreignKey'   => 'office_id'
 			    )
 			);
+		public $paginate = array(
+    		'limit' => 25,
+    		'order' => array(
+        		'Users.id' => 'asc'
+    		)
+		);
 	}
 
 ?>
